@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/items.css' %}">
+<br><br><br><br>
+<div class="product_grid">
+{% for x in item %}
+    <div class="product_card">
+        <div class="image">
+            <img src="{{x.image.url}}" alt="{{ x.name }}">
+        </div>
+        <div class="product_info">
+            <h2 class="product_name">{{x.name}}</h2>
+            
+            <p class="product_description">
+                {{x.description}}
+            </p>
+          
+            <div class="bottom">
+                <div class="price">
+                    <span class="_price">${{x.price}}</span>
+                </div>
+                <div class="buttons">
+                    <a href="{% url 'add_to_cart' x.id %}" class="add_to_cart">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,26 @@
+# Python files
+*.pyc
+__pycache__/
+
+# Django settings
+*.env
+
+# Database
+db.sqlite3
+
+# Migrations
+*/migrations/
+
+# Static and media files
+/staticfiles/
+/media/
+
+# Virtual environment
+venv/
+env/
+
+# VSCode settings
+.vscode/
+
+# MacOS
+.DS_Store

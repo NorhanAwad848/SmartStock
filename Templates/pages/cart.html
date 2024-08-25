@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</br></br>
+<header id="site-header">
+    <div class="container-2">
+        <h1>Shopping Cart</h1>
+    </div>
+</header>
+
+<div class="container-2">
+    <section id="cart">
+        {% for item in cart %}
+        <article class="product">
+            <header>
+                <form action="{% url 'remove_from_cart' item.item.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="remove">
+                        <img src="{{ item.item.image.url }}" alt="">
+                        <h3>Remove product</h3>
+                    </button>
+                </form>
+            </header>
+            <div class="content">
+                <h1>{{ item.item.name }}</h1>
+                <p>{{ item.item.description }}</p>
+            </div>
+            <footer class="content">
+               <h2 class="price">${{ item.item.price }}</h2>
+               <form action="{% url 'decrease_quantity' item.item.id %}"   class="f-minus" method="post">
+                {% csrf_token %}
+                <button type="submit" class="qt-minus">-</button>
+                <span class="qt">{{ item.quantity }}</span>
+               </form>
+               <form action="{% url 'increase_quantity' item.item.id %}" class="f-plus" method="post">
+                {% csrf_token %}
+                <button type="submit" class="qt-plus">+</button>
+                </form>
+            </footer>
+        </article>
+        {% endfor %}
+    </section>
+</div>
+
+<footer id="site-footer">
+    <div class="container-2 clearfix">
+        <div class="left">
+            <h2 class="subtotal">Subtotal: <span>${{ subtotal }}</span></h2>
+            <h3 class="tax">Taxes (5%): <span>${{ tax }}</span></h3>
+            <h3 class="shipping">Shipping: <span>${{ shipping }}</span></h3>
+        </div>
+        <div class="right">
+            <h1 class="total">Total: <span>${{ total }}</span></h1>
+            <form action="{% url 'checkout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn" id="checkout-btn">Checkout</button>
+            </form>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock content %}
