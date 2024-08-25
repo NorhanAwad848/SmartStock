@@ -185,7 +185,7 @@ def generate_sales_report(request):
 
     elements = []
 
-    logo_path = 'E:\Software House Solutions\SmartStock\SmartStock\static\image\SWH - logo.png'  
+    logo_path = 'E:\Software House Solutions\SmartStock\static\image\SWH - logo.png'  
     try:
         logo = Image(logo_path, width=1.5*inch, height=1*inch)
         logo.hAlign = 'LEFT'
