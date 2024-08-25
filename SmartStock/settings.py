@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'SmartStock',
         'USER': 'postgres',   
-        'PASSWORD': '123456',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
